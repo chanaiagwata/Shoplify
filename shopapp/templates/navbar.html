@@ -11,7 +11,7 @@
 <nav class="navbar navbar-inverse" style="height:100px;">
   <div class="container-fluid" style="margin-top:25px;">
     <div class="navbar-header">
-      <a class="navbar-brand" style="color:red; margin-left:60px;font-weight:bold;font-size:23px;" href="">SHOPLIFY</a>
+      <a class="navbar-brand" style="color:red; margin-left:60px;font-weight:bold;font-size:23px;" href="{% url 'indexpage' %}">SHOPLIFY</a>
     </div>
 
      <!-- Adding a search form  -->
@@ -40,10 +40,10 @@
                     </a>
               <ul class="dropdown-menu" role="menu">
                 <li>
-                  <a href="">Home</a>
+                  <a href="{%url 'indexpage' %}">Home</a>
               </li>
                 <li>
-                  <a href="">Profile</a>
+                  <a href="{% url 'profile' %}">Profile</a>
                 </li>
   
                 <li>
