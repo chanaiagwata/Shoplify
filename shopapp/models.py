@@ -18,8 +18,9 @@ class Product(models.Model):
         self.delete()
     
     @classmethod
-    def find_product(cls, product_id):
-        return cls.objects.filter(id=product_id)
+    def search_by_name(cls, search_term):
+        product = cls.objects.filter(name__icontains=search_term)
+        return product
  
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)

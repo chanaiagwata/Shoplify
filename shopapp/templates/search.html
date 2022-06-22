@@ -1,0 +1,25 @@
+{%extends 'base.html'%} 
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+      {% if products %}
+        <h3>Found {{ products|length }} of searched term {{message}}</h3>
+      {% else %}
+        <h3> Found 0 articles for the search term {{message}}</h3>
+      {% endif %}
+  
+    </div>
+    <div class="row">
+
+        {% if products %}
+          {% for product in products %}
+            <div class="col-sm-6 col-md-3">
+                <h1>{{product.name}}</h1>
+            </div>
+          {% endfor %}
+        {% endif %}
+        </div>
+</div>
+{% endblock %}
