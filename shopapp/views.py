@@ -13,7 +13,7 @@ def index(request):
 
 
 def profile(request):
-    posts = Product.objects.all()
+    # posts = Product.objects.all()
     current_user = request.user 
     
     if request.method=='POST':
