@@ -6,10 +6,15 @@ from .forms import *
 
 # Create your views here.
 def index(request):
-    '''
-    Function that renders the landing page
-    '''
-    return render(request, 'index.html')
+    products = Product.objects.all()
+    
+    try:
+        products = products[::-1]
+        
+    except Product.DoesNotExist:
+        hoods  = None
+
+    return render(request, 'index.html', {'hoods':hoods})
 
 
 def profile(request):
