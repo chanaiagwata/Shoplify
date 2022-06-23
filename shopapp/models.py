@@ -11,12 +11,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-    def create_product(self):
-        self.save()
+    # def create_product(self):
+    #     self.save()
         
-    def delete_product(self):
-        self.delete()
+    # def delete_product(self):
+    #     self.delete()
     
+    @classmethod
+    def get_product_by_id(cls,id):
+        product = cls.objects.filter(id= id).all()
+        return product
     @classmethod
     def search_by_name(cls, search_term):
         product = cls.objects.filter(name__icontains=search_term)

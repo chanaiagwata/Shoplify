@@ -6,6 +6,7 @@ from .forms import *
 from .email import send_welcome_email
 
 # Create your views here.
+@login_required()
 def index(request):
     products = Product.objects.all()
     form = NewsLetterForm()
@@ -27,7 +28,7 @@ def index(request):
         
     return render(request, 'index.html', {'products':products, "letterForm":form})
 
-
+@login_required()
 def profile(request):
     # posts = Product.objects.all()
     current_user = request.user 
@@ -63,6 +64,7 @@ def update_profile(request):
         form = DetailsForm()
     return render(request, 'update_profile.html', {"form":form})
 
+@login_required()
 def search_product(request):
     if 'product' in request.GET and request.GET["product"]:
         search_term = request.GET.get("product")
