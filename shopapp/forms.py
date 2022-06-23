@@ -10,3 +10,6 @@ class addProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = ['description']
+
+class NewsLetterForm(forms.Form):
+    email = forms.EmailField(label='Email')

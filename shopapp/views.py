@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -7,23 +7,21 @@ from .forms import *
 # Create your views here.
 def index(request):
     products = Product.objects.all()
+    form = NewsLetterForm()
     if request.method=="POST":
-        form = addProductForm(request.POST, request.FILES)
-        
+        form = NewsLetterForm(request.POST)
         if form.is_valid():
-            
-            product = form.save(commit=False)
-            form.save()
-        return redirect('indexpage')
-    else:
-        form=addProductForm()
-    try:
-        products = products[::-1]
-        
-    except Product.DoesNotExist:
-        products  = None
+            email = form.cleaned_data['email']
+            recipient = NewsLetterRecipients(email =email)
+            recipient.save()
+            HttpResponseRedirect('index')
 
-    return render(request, 'index.html', {'products':products})
+            print('valid')
+            
+        else:
+            form = NewsLetterForm()
+        
+    return render(request, 'index.html', {'products':products, "letterForm":form})
 
 
 def profile(request):
