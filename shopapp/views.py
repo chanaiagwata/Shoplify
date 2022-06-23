@@ -7,14 +7,23 @@ from .forms import *
 # Create your views here.
 def index(request):
     products = Product.objects.all()
-    
+    if request.method=="POST":
+        form = addProductForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            
+            product = form.save(commit=False)
+            form.save()
+        return redirect('indexpage')
+    else:
+        form=addProductForm()
     try:
         products = products[::-1]
         
     except Product.DoesNotExist:
-        hoods  = None
+        products  = None
 
-    return render(request, 'index.html', {'hoods':hoods})
+    return render(request, 'index.html', {'products':products})
 
 
 def profile(request):

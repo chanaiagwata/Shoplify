@@ -5,3 +5,8 @@ class DetailsForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user','product']
+        
+class addProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        exclude = ['description']
