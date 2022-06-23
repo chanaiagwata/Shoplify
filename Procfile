@@ -1,0 +1,1 @@
+web: gunicorn shopcore.wsgi --log-file -
