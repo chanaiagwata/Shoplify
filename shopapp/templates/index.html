@@ -12,78 +12,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block styles %}
     {% bootstrap_css %}
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Pacifico&family=Poppins:wght@100;300&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="{% static 'css/index.css' %}">
     {% endblock %}
 </head>
 <body>
     <div id="bg" style="background-image: url('{% static "images/ecommerce.jpg"%}');">
 
-    </div>
+    </div> 
     <br>
     <br>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {% if user.is_authenticated %}
-                <!-- Modal goes here-->
-                <div class="modal fade bd-example-modal-xl" id="ModalCenter" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title" id="exampleModalLongTitle" style="text-align:center;">Add Product</h2>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    {{ form|crispy }}
-        
-                                    <br>
-                                    <input type="submit" class="btn btn-sm btn-info" value="Save"/>
-                                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-
-                <!--End modal-->
-                
+    <h3 class="text-center" style="font-family: 'Poppins', sans-serif;">Featured Products</h3> 
+    <br>           
                 <div class="row">
 
                     {% if products %}
                     {% for product in products %}
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card mb-4" style="min-height:300px; width:auto;">
+                    <div class="col-md-3 col-sm-3 col-lg-2">
+                        <a href="">
+                        <div class="card mb-4" style="height:25rem; width:auto;font-family: 'Poppins', sans-serif; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);margin-bottom:20px; border-radius: 10px; padding:10px; margin-right:40px;margin-left:40px;">
                             
-                            <div class="card-body" style="margin-bottom:20px; padding:15px;margin:15px;">
-                                <h3 class="card-title">{{ product.name }}</h3>
-                                <img src="{{ product.product_pic.url }}" class="card-img-top" alt="{{ product.name }}" style="height:20rem;background-size:cover; height:25rem; width:25rem;">
-                               
-                                <br>
-                                <br>
-                                <p class="card-text"><span style="font-size:18px;font-family:sans serif;">Ksh: </span>{{product.price}}</p>
+                            <div class="card-body" style="margin-bottom:20px;">
                                 
-                                {% if request.user.profile.product == product %}
-                                <a href="" class="btn btn-outline-danger btn-sm">Leave Hood</a>
-                                {% elif not request.user.profile.product %}
-                                <a href="" class=""></a>
-                                {% endif %}
+                                <img src="{{ product.product_pic.url }}" class="card-img-top" alt="{{ product.name }}" style="height:15rem;background-size:cover;">
+                                <br>
+                        
+                                <div style="margin-top:10px; font-weight:bold;">
+                                    <p class="card-title text-center">{{ product.name }}</p>
+                                    <div style="background:black;height:3px;opacity:60%">
+                                    
+
+                                    </div>
+                                    <p class="card-text text-center" style="font-size:18px;color:red; margin-top:10px;font-weight:bold;">Ksh: {{product.price}}.</p>
+                                </div>
+
+                                <br>
+                                
                             </div>
                         </div>
                      </div>
+                    </a>
                      {% endfor %}
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
+<div style="background:black;">
+    <footer>
+        <div class="container" style="display:flex;flex-direction:row; padding-top:40px;justify-content:space-around;" >
+            <div style="margin-right:100px;">
+                <h1 style="color:red;font-weight:bold; line-height:20px;">Shoplify</h1>
+                <ul style="margin-top:30px;">
+                    <li>
+                        <p><a href="#" style="color:white;" >About Us</a></p>
+                        <p><a href="#" style="color:white;">Careers</a></p>
+                        <p><a href="#" style="color:white;">Terms and Conditions</a></p>
+                        <p><a href="#" style="color:white;">Return Policy</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div style="width:300px; margin-right:70px;">
+                <p style="color:white;" >New to Shoplify? Subscribe to our Newsletter</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Enter your email">
+                    <span class="input-group-btn">
+                    <button class="btn btn-danger" type="submit">Subscribe</button>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <a href=""><img src="{% static 'images/googlestore.png'%}" alt="google icon" height="50px;" width="200px"><span><img src="{% static 'images/appstore.png'%}" alt="appstore icon"  height="50px;" width="200px"></p></a>
+                
+             </div>
+
+        </div>
+        
+
+    
+    </footer>
+
+</div>
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
