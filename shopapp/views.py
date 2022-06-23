@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+from .email import send_welcome_email
 
 # Create your views here.
 def index(request):
@@ -11,9 +12,12 @@ def index(request):
     if request.method=="POST":
         form = NewsLetterForm(request.POST)
         if form.is_valid():
+            name = form.cleaned_data['your_name']
             email = form.cleaned_data['email']
-            recipient = NewsLetterRecipients(email =email)
+            recipient = NewsLetterRecipients(name= name, email =email)
             recipient.save()
+            send_welcome_email(name, email)
+            
             HttpResponseRedirect('index')
 
             print('valid')

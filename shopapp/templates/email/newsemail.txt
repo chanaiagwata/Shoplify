@@ -1,0 +1,2 @@
+Hi {name}
+Welcome to the Shoplify newsletter You will find the most exciting news about Shoplify
