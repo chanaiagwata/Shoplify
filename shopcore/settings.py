@@ -80,7 +80,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'shopcore.wsgi.application'
 
 MODE=config("MODE", default="dev")
-SECRET_KEY = config('SECRET_KEY')
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
