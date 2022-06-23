@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-{% load static%}
+{% load static %}
+{% load crispy_forms_tags %}
 
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +12,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block styles %}
     {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     {% endblock %}
 </head>
 <body>
-    {% block content %}
     <div id="bg" style="background-image: url('{% static "images/ecommerce.jpg"%}');">
 
     </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% if user.is_authenticated %}
+                <!-- Modal goes here-->
+                <div class="modal fade bd-example-modal-xl" id="ModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="exampleModalLongTitle" style="text-align:center;">Add Product</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+        
+                                    <br>
+                                    <input type="submit" class="btn btn-sm btn-info" value="Save"/>
+                                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
 
-    {%endblock%}
+                <!--End modal-->
+                
+                <div class="row">
+
+                    {% if products %}
+                    {% for product in products %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card mb-4" style="min-height:300px; width:auto;">
+                            
+                            <div class="card-body" style="margin-bottom:20px; padding:15px;margin:15px;">
+                                <h3 class="card-title">{{ product.name }}</h3>
+                                <img src="{{ product.product_pic.url }}" class="card-img-top" alt="{{ product.name }}" style="height:20rem;background-size:cover; height:25rem; width:25rem;">
+                               
+                                <br>
+                                <br>
+                                <p class="card-text"><span style="font-size:18px;font-family:sans serif;">Ksh: </span>{{product.price}}</p>
+                                
+                                {% if request.user.profile.product == product %}
+                                <a href="" class="btn btn-outline-danger btn-sm">Leave Hood</a>
+                                {% elif not request.user.profile.product %}
+                                <a href="" class=""></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                     </div>
+                     {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
 </html>
+{% endblock %}
