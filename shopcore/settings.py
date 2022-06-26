@@ -16,7 +16,7 @@ import os
 import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -79,12 +79,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shopcore.wsgi.application'
 
-MODE=config("MODE", default="dev")
+MODE="dev"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if config('MODE')=="dev":
+if MODE=="dev":
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql_psycopg2',

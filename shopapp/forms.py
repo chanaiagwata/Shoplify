@@ -1,4 +1,4 @@
-from .models import *
+from .models import Product, Profile
 from django import forms
 
 class DetailsForm(forms.ModelForm):
@@ -9,7 +9,8 @@ class DetailsForm(forms.ModelForm):
 class addProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ['description']
+        fields = '__all__'
+        
 
 class NewsLetterForm(forms.Form):
     your_name = forms.CharField(label='First Name',max_length=30)
