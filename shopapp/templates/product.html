@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+{{block.super}}
+
+<div class="container-fluid">
+    <div class="row jumbotron text-center">
+        <div class="col-md-6">
+            <br>
+            <br>
+            <h4 style>Product</h4>
+            <br>
+                <form action="{% url 'product' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {% bootstrap_form product_form layout='inline'%}
+                    <input type="submit" class="btn-sm btn-primary" value="Add Product">
+
+                </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

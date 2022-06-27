@@ -76,3 +76,21 @@ def search_product(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message":message})
+    
+def product(request):
+    current_user = request.user 
+    
+    if request.method=='POST':
+        product_form = addProductForm(request.POST, request.FILES)
+        
+        if product_form.is_valid():
+            product = product_form.save(commit=False)
+            product.user = current_user
+            product.save()
+            
+        return redirect('indexpage')
+        
+    else:
+        product_form = addProductForm
+        
+    return render(request,'product.html', {'product_form':product_form})
