@@ -46,7 +46,7 @@
 * Click this link for additional information https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop
 
 ### Live Site
-Access it here  
+Access it here   https://chanai-shoplify.herokuapp.com/
 
 
 ## License
