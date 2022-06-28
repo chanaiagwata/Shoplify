@@ -2,13 +2,13 @@
 ## By Chanai Agwata
 ### (MS School Project)
 
-* [Overall Description](https://github.com/chanaiagwata/Instagram-Clone#overall-project-description)
+* [Overall Description](https://github.com/chanaiagwata/Shoplify#overall-project-description)
 
-* [Setup Instructions](https://github.com/chanaiagwata/Instagram-Clone#setup-instructions)
+* [Setup Instructions](https://github.com/chanaiagwata/Shoplify#setup-instructions)
 
-* [License](https://github.com/chanaiagwata/Instagram-Clone#license)
+* [License](https://github.com/chanaiagwata/Shoplify#license)
 
-* [Author's Info](https://github.com/chanaiagwata/Instagram-Clone#authors-info)
+* [Author's Info](https://github.com/chanaiagwata/Shoplify#authors-info)
 
 ## Overall Project Description
 <p>This is an e-commerce that allows customers to purchase goods and services from various sellers listed on the platform.</p>
