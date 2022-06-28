@@ -78,12 +78,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shopcore.wsgi.application'
 
-MODE=config("MODE", default="dev")
+MODE="dev"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if config('MODE')=="dev":
+if MODE=="dev":
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql_psycopg2',
